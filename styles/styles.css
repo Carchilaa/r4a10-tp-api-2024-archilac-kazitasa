@@ -4,10 +4,10 @@
 /* Définition des principales couleurs */
 :root {
   --text-color: #fafafa; /* (Texte presque blanc) */
-  --background: #34495e; /* (Fond bleu foncé) */
+  --background: rgb(31,31,31); /* (Noir un peu gris) */
   --background-button: #bebebe;
-  --main-green: rgb(26, 188, 156);
-  --active-green: rgb(20, 156, 128);
+  --main-yellow: #F5C518;
+  --active-yellow: #ffd950;
   --almost-black: #2d2d2d;
 }
 
@@ -34,7 +34,12 @@ h1 {
   text-align: center;
   font-variant: small-caps;
   font-size: 2.5em;
-  color: var(--main-green);
+
+  background: var(--main-yellow);
+  background: linear-gradient(to right, var(--main-yellow) 36%, #473a08 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
 
 #explication {
@@ -71,13 +76,13 @@ h1 {
   color: var(--almost-black);
   flex: 1;
   padding: 0.7em;
-  border: 0.3em solid var(--main-green);
+  border: 0.3em solid var(--main-yellow);
 }
 
 #bloc-recherche > button {
   padding: 0.8em 0.8em;
   /* Bordure invisible pour que le hover ne bouge pas le bouton */
-  border: 1px solid var(--main-green);
+  border: 1px solid var(--main-yellow);
 
   /* Par défaut, les boutons sont en gris
 	 (S'ils sont "clicables", ils passent en vert) */
@@ -86,7 +91,7 @@ h1 {
 
 /* Apparences des boutons clicables */
 #bloc-recherche > button.btn_clicable {
-  background-color: var(--main-green);
+  background-color: var(--main-yellow);
 }
 
 #bloc-recherche > button:focus {
@@ -101,7 +106,7 @@ h1 {
 }
 
 #bloc-recherche > button.btn_clicable:active {
-  background-color: var(--active-green);
+  background-color: var(--active-yellow);
 }
 
 /* GIF de chargement (caché par défaut) */
@@ -119,7 +124,7 @@ h1 {
 
 /* Section de la barre de séparation */
 #section-separation {
-  border-left: 2px dashed var(--main-green);
+  border-left: 2px dashed var(--main-yellow);
   margin: 0 20px;
 }
 
@@ -148,7 +153,7 @@ h1 {
 }
 
 #liste-favoris li span:hover {
-  color: var(--main-green);
+  color: var(--main-yellow);
 }
 
 /* Media-query pour gérer l'affichage sur petit écran */
@@ -158,7 +163,7 @@ h1 {
   }
 
   #section-separation {
-    border-top: 2px dashed var(--main-green);
+    border-top: 2px dashed var(--main-yellow);
     margin: 0 -10px 40px -10px;
   }
 
