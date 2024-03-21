@@ -2,9 +2,11 @@
 // (Pour plus infos : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
 "use strict";
 
+let numFav = 0;
 // Récupération des éléments du DOM
 let btnRechercher = document.getElementById("btn-lancer-recherche");
 let searchBar = document.getElementById("searchBar");
+let btnFav = document.getElementById("btn-favoris");
 
 btnRechercher.addEventListener("click", () => {
   let recherche = searchBar.textContent;
@@ -17,3 +19,13 @@ btnRechercher.addEventListener("click", () => {
     fetchData(recherche);
   }
 });
+
+btnFav.addEventListener("click", ()=>{
+  let recherche = searchBar.value;
+  let objectID = fetchData(recherche);
+  let key= "fav" + numFav.toString(); 
+  let value = [objectID["#IMDB_ID"],objectID["#TITLE"]];
+  localStorage.setItem(key, value);
+
+    numFav++;
+})
