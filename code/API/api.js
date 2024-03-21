@@ -1,13 +1,9 @@
-
-
-//Definition de l'URL de l'API de IMDB
-const apiUrl = 'https://search.imdbot.workers.dev/?q=Spiderman';
-
-
-
-
-//Function pour recuperer les infos de l'API
-function fetchData(){
+// Function pour recuperer les infos de l'API
+function fetchData(recherche){
+    console.log(recherche);
+    // Definition de l'URL de l'API de IMDB
+    let apiUrl = 'https://search.imdbot.workers.dev/?q=' . recherche ;
+    console.log(apiUrl);
 
     //requete GET vers l'URL de l'API
     fetch(apiUrl)
@@ -21,11 +17,9 @@ function fetchData(){
     }) .then(data => {
 
         let movies = data.description;
-        console.log(movies[0]['#TITLE']);
+        console.log(movies);
     })
     .catch(error =>{
         console.error('An error as been produced :', error);
     })
 }
-
-fetchData();
