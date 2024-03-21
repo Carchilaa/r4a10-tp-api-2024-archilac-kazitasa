@@ -7,13 +7,13 @@ let btnRechercher = document.getElementById("btn-lancer-recherche");
 let searchBar = document.getElementById("searchBar");
 
 btnRechercher.addEventListener("click", () => {
-  let recherche = searchBar.textContent;
-  console.log(recherche);
+  let recherche = searchBar.value;
+
   // recherche de l'utilisateur
   if (recherche != null) {
     console.log("DANS LE LISTENER");
 
-    // appel à l'api
+    // Appel à l'API
     fetchData(recherche);
   }
 });
