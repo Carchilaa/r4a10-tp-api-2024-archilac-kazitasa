@@ -24,15 +24,25 @@ function fetchData(recherche) {
       console.log(movies);
 
       if (movies.length == 0) {
+        // Supprimer les anciens résulats
         resP = Array.from(document.getElementsByClassName("res"));
 
         resP.forEach((child) => {
           divResult.removeChild(child);
         });
 
+        // Afficher résultat vide
         resVide.removeAttribute("class");
       } else {
+        // Enlever résultat vide
         resVide.setAttribute("class", "hide");
+
+        // Supprimer les anciens résulats
+        resP = Array.from(document.getElementsByClassName("res"));
+
+        resP.forEach((child) => {
+          divResult.removeChild(child);
+        });
 
         // Affichage des résultats
         movies.forEach((movie) => {

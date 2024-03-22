@@ -12,7 +12,7 @@ btnRechercher.addEventListener("click", () => {
   let recherche = searchBar.value;
 
   // recherche de l'utilisateur
-  if (recherche != null) {
+  if (recherche != "") {
     console.log("DANS LE LISTENER");
 
     // Appel à l'API
