@@ -19,6 +19,9 @@ function fetchData(recherche) {
       return response.json();
     })
     .then((data) => {
+      // Retirer le logo de chargement
+      gifChargement.style.display = "none";
+
       // récupération du résultat de la recherche (liste de 8 films MAX)
       let movies = data.description;
       console.log(movies);
@@ -46,11 +49,27 @@ function fetchData(recherche) {
 
         // Affichage des résultats
         movies.forEach((movie) => {
-          let result = document.createElement("p");
-          result.setAttribute("class", "res");
-          result.textContent = movie["#TITLE"];
+          // création d'un élément HTML pour ajouter un lien
+          let link = document.createElement("a");
+          link.setAttribute("class", "links");
+          // lien vers la page IMDB du film
+          link.href = movie["#IMDB_URL"]
+          link.target = "_blank" // ouverture dans un nouvel onglet
 
-          divResult.appendChild(result);
+          // création d'un élément HTML pour le poster du film
+          let result = document.createElement("img");
+          result.setAttribute("class", "res");
+
+          // Vérifier qu'on dispose d'un poster
+          if(movie["#IMG_POSTER"]) {
+            result.src = movie["#IMG_POSTER"];
+          } else {
+            result.src = "./assets/img/no-img-found.gif";
+          }
+
+          // Ajout des élémens créés dans le HTML (<div id="bloc-resultats">)
+          link.appendChild(result);
+          divResult.appendChild(link);
         });
       }
     })

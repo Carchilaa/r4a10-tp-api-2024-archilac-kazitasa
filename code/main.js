@@ -7,25 +7,35 @@ let numFav = 0;
 let btnRechercher = document.getElementById("btn-lancer-recherche");
 let searchBar = document.getElementById("searchBar");
 let btnFav = document.getElementById("btn-favoris");
+let gifChargement = document.getElementById("bloc-gif-attente");
 
+/////////////////////
+// BOUTON RECHERCHER
+/////////////////////
 btnRechercher.addEventListener("click", () => {
   let recherche = searchBar.value;
 
   // recherche de l'utilisateur
   if (recherche != "") {
-    console.log("DANS LE LISTENER");
-
     // Appel à l'API
     fetchData(recherche);
+
+    // Affichage du logo de chargement (le logo est retiré lors de la réception de la réponse de la API)
+    gifChargement.style.display = "block";
   }
 });
 
+/////////////////////
+// BOUTON FAVORIS
+/////////////////////
 btnFav.addEventListener("click", ()=>{
   let recherche = searchBar.value;
-  let objectID = fetchData(recherche);
-  let key= "fav" + numFav.toString(); 
-  let value = [objectID["#IMDB_ID"],objectID["#TITLE"]];
-  localStorage.setItem(key, value);
-
-    numFav++;
+  if (recherche != "") {
+    let objectID = fetchData(recherche);
+    let key= "fav" + numFav.toString(); 
+    let value = [objectID["#IMDB_ID"],objectID["#TITLE"]];
+    localStorage.setItem(key, value);
+  
+      numFav++;
+  }
 })

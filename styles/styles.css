@@ -9,6 +9,7 @@
   --main-yellow: #F5C518;
   --active-yellow: #ffd950;
   --almost-black: #2d2d2d;
+  --noir_transparent:#1d1d1db3;
 }
 
 * {
@@ -124,6 +125,34 @@ h1 {
   /* Affichage d'une flèche devant chaque résultat
 		(Cf. https://unicode-table.com/fr/21E8/ ) */
   content: "\21E8\00A0";
+}
+
+#bloc-resultats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  padding: 25px;
+  gap: 5px;
+}
+
+#bloc-resultats img {
+  width: 30dvb;
+  height: 50vb;
+
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: 8px;
+
+  box-shadow: 0px 0px 8px black;
+
+  transition: all 0.3s; 
+}
+
+#bloc-resultats img:hover {
+  cursor: pointer;
+
+  transform: scale(1.03);
 }
 
 /* Section de la barre de séparation */
