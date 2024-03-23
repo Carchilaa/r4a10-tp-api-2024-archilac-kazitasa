@@ -49,6 +49,9 @@ function fetchData(recherche) {
 
         // Affichage des résultats
         movies.forEach((movie) => {
+          // création d'un élément HTML <figure> pour contenir les liens
+          let figure = document.createElement("figure");
+
           // création d'un élément HTML pour ajouter un lien
           let link = document.createElement("a");
           link.setAttribute("class", "links");
@@ -56,9 +59,15 @@ function fetchData(recherche) {
           link.href = movie["#IMDB_URL"]
           link.target = "_blank" // ouverture dans un nouvel onglet
 
+          // création d'une image pour le lien
+          let icon_link = document.createElement("img");
+          icon_link.setAttribute("class", "icon_lien");
+          icon_link.src = "./assets/img/link-external-regular-24.png";
+
           // création d'un élément HTML pour le poster du film
           let result = document.createElement("img");
           result.setAttribute("class", "res");
+
 
           // Vérifier qu'on dispose d'un poster
           if(movie["#IMG_POSTER"]) {
@@ -67,8 +76,11 @@ function fetchData(recherche) {
             result.src = "./assets/img/no-img-found.gif";
           }
 
+
+          figure.appendChild(icon_link);
+          figure.appendChild(result);
+          link.appendChild(figure);
           // Ajout des élémens créés dans le HTML (<div id="bloc-resultats">)
-          link.appendChild(result);
           divResult.appendChild(link);
         });
       }
