@@ -30,25 +30,32 @@ function fetchData(recherche) {
         // Supprimer les anciens résulats
         resP = Array.from(document.getElementsByClassName("res"));
 
-        resP.forEach((child) => {
-          divResult.removeChild(child);
-        });
+        while(resP.length){
+          resP.pop();
+          divResult.firstElementChild.remove()
+        }
+        resVide.setAttribute("hidden", false);
+        resVide.style.display = "block";
 
         // Afficher résultat vide
         resVide.removeAttribute("class");
       } else {
         // Enlever résultat vide
-        resVide.setAttribute("class", "hide");
+        resVide.setAttribute("hidden", true);
+        resVide.style.display = "none";
 
         // Supprimer les anciens résulats
         resP = Array.from(document.getElementsByClassName("res"));
 
-        resP.forEach((child) => {
-          divResult.removeChild(child);
-        });
 
+        while(resP.length){
+          resP.pop();
+          divResult.firstElementChild.remove()
+        }
+        
         // Affichage des résultats
         movies.forEach((movie) => {
+          
           // création d'un élément HTML <figure> pour contenir les liens
           let figure = document.createElement("figure");
 
@@ -67,7 +74,7 @@ function fetchData(recherche) {
           // création d'un élément HTML pour le poster du film
           let result = document.createElement("img");
           result.setAttribute("class", "res");
-
+          
 
           // Vérifier qu'on dispose d'un poster
           if(movie["#IMG_POSTER"]) {
