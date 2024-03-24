@@ -49,6 +49,7 @@ h1 {
   text-align: center;
   font-variant: small-caps;
   font-size: 2.5em;
+  padding: 0 10vb 0 10vb; /*padding gauche et droit*/
 }
 
 .animated-text {
@@ -163,7 +164,7 @@ h1 {
   gap: 5px;
 }
 
-#bloc-resultats .res {
+#bloc-resultats .poster {
   width: 30dvb;
   height: 50vb;
 

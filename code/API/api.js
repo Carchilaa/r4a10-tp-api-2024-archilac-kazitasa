@@ -29,29 +29,21 @@ function fetchData(recherche) {
       if (movies.length == 0) {
         // Supprimer les anciens résulats
         resP = Array.from(document.getElementsByClassName("res"));
-
-        while(resP.length){
-          resP.pop();
-          divResult.firstElementChild.remove()
-        }
-        resVide.setAttribute("hidden", false);
-        resVide.style.display = "block";
+        resP.forEach(child => {
+          divResult.removeChild(child);
+        });
 
         // Afficher résultat vide
         resVide.removeAttribute("class");
       } else {
         // Enlever résultat vide
-        resVide.setAttribute("hidden", true);
-        resVide.style.display = "none";
+        resVide.setAttribute("class", "hide");
 
         // Supprimer les anciens résulats
         resP = Array.from(document.getElementsByClassName("res"));
-
-
-        while(resP.length){
-          resP.pop();
-          divResult.firstElementChild.remove()
-        }
+        resP.forEach(child => {
+          divResult.removeChild(child);
+        });
         
         // Affichage des résultats
         movies.forEach((movie) => {
@@ -61,7 +53,7 @@ function fetchData(recherche) {
 
           // création d'un élément HTML pour ajouter un lien
           let link = document.createElement("a");
-          link.setAttribute("class", "links");
+          link.setAttribute("class", "links res");
           // lien vers la page IMDB du film
           link.href = movie["#IMDB_URL"]
           link.target = "_blank" // ouverture dans un nouvel onglet
@@ -73,7 +65,7 @@ function fetchData(recherche) {
 
           // création d'un élément HTML pour le poster du film
           let result = document.createElement("img");
-          result.setAttribute("class", "res");
+          result.setAttribute("class", "poster");
           
 
           // Vérifier qu'on dispose d'un poster
