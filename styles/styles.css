@@ -254,4 +254,9 @@ figure {
   #section-favoris {
     flex: 0;
   }
+
+  #liste-favoris #fav_list #btn_fav{
+    background-color: transparent;
+    border: var(--noir_transparent);
+  }
 }

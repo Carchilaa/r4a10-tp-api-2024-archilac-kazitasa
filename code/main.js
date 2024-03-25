@@ -2,13 +2,15 @@
 // (Pour plus infos : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
 "use strict";
 
-let numFav = 0;
 // Récupération des éléments du DOM
 const btnRechercher = document.getElementById("btn-lancer-recherche");
 const searchBar = document.getElementById("searchBar");
 const btnFav = document.getElementById("btn-favoris");
 const gifChargement = document.getElementById("bloc-gif-attente");
 const lienGit = document.getElementById("lien-git");
+const fav_search = document.querySelectorAll('.button_fav');
+
+
 
 /////////////////////
 // BOUTON RECHERCHER
@@ -30,14 +32,10 @@ btnRechercher.addEventListener("click", () => {
 // BOUTON FAVORIS
 /////////////////////
 btnFav.addEventListener("click", ()=>{
+  //On recupere la valeur de la recherche
   let recherche = searchBar.value;
   if (recherche != "") {
-    let objectID = fetchData(recherche);
-    let key= "fav" + numFav.toString(); 
-    let value = [objectID["#IMDB_ID"],objectID["#TITLE"]];
-    localStorage.setItem(key, value);
-  
-      numFav++;
+    addToFav(recherche);
   }
 });
 
@@ -60,6 +58,17 @@ searchBar.addEventListener("keydown", (event) => {
   }
 })
 
+fav_search.forEach(button => {
+  button.addEventListener("click", () =>{
+    let span_fav = document.getElementById("span_fav");
+    let recherche = span_fav.value;
+
+    console.log(recherche);
+    fetchData(recherche);
+})
+
+})
+
 
 /////////////////////
 // LIEN GIT
@@ -71,3 +80,7 @@ lienGit.addEventListener("mouseover", () => {
 lienGit.addEventListener("mouseout", () => {
   lienGit.removeAttribute("class");
 });
+
+window.onload = function() {
+  displayFavsonLoad();
+};
