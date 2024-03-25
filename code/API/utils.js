@@ -61,6 +61,10 @@ function displayFavs(){
         btn.textContent = fav.toUpperCase();
         btn_supp.textContent = " X ";
     }
+
+    btn.addEventListener("click", () =>{
+        fetchData(fav);
+    });
         
     li.appendChild(btn);
     div.appendChild(li);
