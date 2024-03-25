@@ -10,6 +10,22 @@ function removeFromFavs(key){;
     localStorage.removeItem(key);
 }
 
+function verify_dobles(movie){
+
+    let key;
+    let fav;
+    let exits = false;
+    if(localStorage.length > 0){
+        key = "favs" + (localStorage.length - 1);
+        fav  = localStorage.getItem(key); 
+        if(fav == movie){
+            exits = true;
+        }
+    }
+
+    return exits;
+}
+
 function displayFavs(){
     //On creer les elements de la section de favoris
     let li = document.createElement("li");
@@ -35,7 +51,7 @@ function displayFavs(){
     let fav;
     let key;
     if(localStorage.length > 0){
-        key = "favs" + localStorage.length - 1;
+        key = "favs" + (localStorage.length - 1);
         fav  = localStorage.getItem(key);
         btn.textContent = fav.toUpperCase();
         btn_supp.textContent = " X ";

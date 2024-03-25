@@ -21,6 +21,7 @@ btnRechercher.addEventListener("click", () => {
   // recherche de l'utilisateur
   if (recherche != "") {
     // Appel à l'API
+    
     fetchData(recherche);
 
     // Affichage du logo de chargement (le logo est retiré lors de la réception de la réponse de la API)
@@ -35,7 +36,10 @@ btnFav.addEventListener("click", ()=>{
   //On recupere la valeur de la recherche
   let recherche = searchBar.value;
   if (recherche != "") {
-    addToFav(recherche);
+    if(!verify_dobles(recherche)){
+      addToFav(recherche);
+    }
+    
   }
 });
 
@@ -63,15 +67,7 @@ searchBar.addEventListener("keydown", (event) => {
 /////////////////////
 // FAVORIS
 /////////////////////
-fav_search.forEach(button => {
-  button.addEventListener("click", () =>{
-    let span_fav = document.getElementById("span_fav");
-    let recherche = span_fav.value;
 
-    console.log(recherche);
-    fetchData(recherche);
-  });
-});
 window.onload = function() {
   displayFavsonLoad();
 };
