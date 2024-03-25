@@ -290,8 +290,13 @@ figure {
   margin-bottom: 8px;
 }
 
+#liste-favoris {
+  padding: 0;
+}
+
 #liste-favoris li {
   margin-bottom: 8px;
+  list-style-type: none;
 }
 
 .button_fav {
