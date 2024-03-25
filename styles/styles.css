@@ -138,7 +138,7 @@ h1 {
   background-color: var(--background-button);
 }
 
-#btn-favoris {
+#btn-favoris, #btn-poster-favoris {
   border-radius: 360px;
 }
 
@@ -290,13 +290,42 @@ figure {
   margin-bottom: 8px;
 }
 
-#liste-favoris {
+#liste-favoris, #liste-films-favoris {
   padding: 0;
 }
 
 #liste-favoris li {
   margin-bottom: 8px;
   list-style-type: none;
+}
+
+#liste-films-favoris {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+#liste-films-favoris li {
+  list-style-type: none;
+}
+
+#liste-films-favoris .poster {
+  width: 10dvb;
+  height: 20vb;
+
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: 8px;
+
+  box-shadow: 0px 0px 8px black;
+
+  transition: all 0.3s; 
+}
+
+#liste-films-favoris .poster:hover {
+  /* filter: brightness(70%); */
+  transform: scale(1.03);
 }
 
 .button_fav {
@@ -312,6 +341,13 @@ figure {
   cursor: pointer;
 
   background-color: var(--active-yellow);
+}
+
+hr {
+  width: 70%;
+  margin: 30px auto 30px auto;
+
+  color: var(--main-yellow);
 }
 
 /* Media-query pour gérer l'affichage sur petit écran */

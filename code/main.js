@@ -9,6 +9,7 @@ const btnFav = document.getElementById("btn-favoris");
 const gifChargement = document.getElementById("bloc-gif-attente");
 const lienGit = document.getElementById("lien-git");
 const fav_search = document.querySelectorAll('.button_fav');
+const btnsPosterFav = document.querySelectorAll("#btn-poster-favoris");
 
 
 
@@ -37,6 +38,16 @@ btnFav.addEventListener("click", ()=>{
   if (recherche != "") {
     addToFav(recherche);
   }
+});
+
+/////////////////////
+// BOUTON POSTER FAVORIS
+/////////////////////
+btnsPosterFav.forEach(button => {
+  button.addEventListener("click", () =>{
+    console.log("clique sur btn fav");
+    addFilmToFav(button);
+  });
 });
 
 ///////////////////////////

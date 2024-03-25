@@ -49,66 +49,15 @@ function fetchData(recherche) {
         let idPoster = 1;
         // Affichage des résultats
         movies.forEach((movie) => {
-          // création d'un élément HTML <figure> pour contenir les liens
-          let figure = document.createElement("figure");
-
-          // création d'un élément HTML <span> pour faire office de badge
-          let span = document.createElement("span");
-          span.setAttribute("class", "badge");
-          span.textContent = movie["#TITLE"];
-
-          // création d'un élément HTML pour ajouter un lien
-          let link = document.createElement("a");
-          link.setAttribute("class", "links res");
-          link.setAttribute("id", "poster-"+idPoster);
-          // lien vers la page IMDB du film
-          link.href = movie["#IMDB_URL"]
-          link.target = "_blank" // ouverture dans un nouvel onglet
-
-          // création d'une image pour le lien
-          let icon_link = document.createElement("img");
-          icon_link.setAttribute("class", "icon_lien");
-          icon_link.src = "./assets/img/link-external-regular-24.png";
-
-          // création d'un élément HTML pour le poster du film
-          let result = document.createElement("img");
-          result.setAttribute("class", "poster");
-
-          // création d'un élément HTML <button> pour l'ajout de favoris
-          let btnFavoris = document.createElement("button");
-          btnFavoris.setAttribute("class", "btn_clicable");
-          btnFavoris.setAttribute("id", "btn-favoris");
-          btnFavoris.type = "button";
-          btnFavoris.title = "Ajouter la recherche aux favoris";
-          // création d'un élément HTML <img> (une petite étoile)
-          let etoile = document.createElement("img");
-          etoile.src = "assets/img/etoile-vide.svg";
-          etoile.alt = "Etoile vide";
-          etoile.width = "15";
-          
-
-          // Vérifier qu'on dispose d'un poster
-          if(movie["#IMG_POSTER"]) {
-            result.src = movie["#IMG_POSTER"];
-          } else {
-            result.src = "./assets/img/no-img-found.gif";
-          }
-
-
-          btnFavoris.appendChild(etoile);
-          span.appendChild(btnFavoris);
-
-          figure.appendChild(icon_link);
-          figure.appendChild(result);
-          figure.appendChild(span);
-
-          link.appendChild(figure);
+          // création des éléments nécessaires pour faire un poster cliquable
+          let link = createPoster(movie);
 
           // Ajout des élémens créés dans le HTML (<div id="bloc-resultats">)
           divResult.appendChild(link);
 
           /**
            * Le code HTML généré sera sous cette forme :
+           * 
            * <a class="links res" href="https://imdb.com/title/tt0409591" target="_blank">
             <figure>
               <img class="icon_lien" src="./assets/img/link-external-regular-24.png">
@@ -142,4 +91,68 @@ function fetchData(recherche) {
     .catch((error) => {
       console.error("An error as been produced :", error);
     });
+}
+
+function createPoster(movie) {
+  // création d'un élément HTML <figure> pour contenir les liens
+  let figure = document.createElement("figure");
+
+  // création d'un élément HTML <span> pour faire office de badge
+  let span = document.createElement("span");
+  span.setAttribute("class", "badge");
+  span.textContent = movie["#TITLE"];
+
+  // création d'un élément HTML pour ajouter un lien
+  let link = document.createElement("a");
+  link.setAttribute("class", "links res");
+  // lien vers la page IMDB du film
+  link.href = movie["#IMDB_URL"]
+  link.target = "_blank" // ouverture dans un nouvel onglet
+
+  // création d'une image pour le lien
+  let icon_link = document.createElement("img");
+  icon_link.setAttribute("class", "icon_lien");
+  icon_link.src = "./assets/img/link-external-regular-24.png";
+
+  // création d'un élément HTML pour le poster du film
+  let result = document.createElement("img");
+  result.setAttribute("class", "poster");
+
+  // création d'un élément HTML <button> pour l'ajout de favoris
+  let btnFavoris = document.createElement("button");
+  btnFavoris.setAttribute("class", "btn_clicable");
+  btnFavoris.setAttribute("id", "btn-poster-favoris");
+  const movieInfos = JSON.stringify(movie);
+  btnFavoris.setAttribute("value", movieInfos);
+  btnFavoris.type = "button";
+  btnFavoris.title = "Ajouter la recherche aux favoris";
+  // Ajout de l'écouteur d'événement sur le bouton "Ajouter aux favoris"
+  btnFavoris.addEventListener("click", (event) => {
+    event.stopPropagation(); // Arrêter la propagation de l'événement
+    addFilmToFav(event.target); // Appel de la fonction pour ajouter le film aux favoris
+});
+
+  // création d'un élément HTML <img> (une petite étoile)
+  let etoile = document.createElement("img");
+  etoile.src = "assets/img/etoile-vide.svg";
+  etoile.alt = "Etoile vide";
+  etoile.width = "15";
+
+  // Vérifier qu'on dispose d'un poster
+  if(movie["#IMG_POSTER"]) {
+    result.src = movie["#IMG_POSTER"];
+  } else {
+    result.src = "./assets/img/no-img-found.gif";
+  }
+
+  btnFavoris.appendChild(etoile);
+  span.appendChild(btnFavoris);
+
+  figure.appendChild(icon_link);
+  figure.appendChild(result);
+  figure.appendChild(span);
+
+  link.appendChild(figure);
+
+  return link;
 }
