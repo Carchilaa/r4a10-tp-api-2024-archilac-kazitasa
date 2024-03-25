@@ -314,6 +314,22 @@ figure {
   background-color: var(--active-yellow);
 }
 
+#liste_favoris{
+  justify-content: space-around;
+}
+
+#div_favs{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#btn_supp{
+  background-color: red;
+  border-color: transparent;
+  border-radius: 8px;
+}
+
 /* Media-query pour gérer l'affichage sur petit écran */
 @media (max-width: 900px) {
   #conteneur {

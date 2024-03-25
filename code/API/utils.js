@@ -16,39 +16,65 @@ function displayFavs(){
 
     li.setAttribute("id" , "fav_list");
 
+    let div = document.createElement("div");
+    div.setAttribute("id" , "div_favs");
+
     let btn = document.createElement("button");
 
     btn.setAttribute("id" , "btn_fav");
     btn.setAttribute("class", "button_fav");
-    btn.textContent = fav.toUpperCase();
+    //btn.textContent = fav.toUpperCase();
+
+    let btn_supp = document.createElement("button");
+    btn_supp.setAttribute("id" , "btn_supp");
+    btn.setAttribute("class", "button_fav");
 
     let span = document.createElement("span");
     span.setAttribute("id", "span_fav");
 
     let fav;
+    let key;
     if(localStorage.length > 0){
-        let key = localStorage.length - 1;
-        fav  = localStorage.getItem("favs" + key);
+        key = "favs" + localStorage.length - 1;
+        fav  = localStorage.getItem(key);
+        btn.textContent = fav.toUpperCase();
+        btn_supp.textContent = " X ";
     }else{
-        fav  = localStorage.getItem("favs" + localStorage.length);
+        key = "favs" + localStorage.length;
+        fav  = localStorage.getItem(key);
+        btn.textContent = fav.toUpperCase();
+        btn_supp.textContent = " X ";
     }
         
     li.appendChild(btn);
+    div.appendChild(li);
+    div.appendChild(btn_supp);
             
-    fav_list.appendChild(li);
+    fav_list.appendChild(div);
+
+    btn_supp.addEventListener("click", () => {
+        fav_list.removeChild(div); 
+        removeFromFavs(key);           
+            })
 }
 
 function displayFavsonLoad(){
     for(let i = 0; i < localStorage.length; i ++){
         //On creer les elements de la section de favoris
-        let li = document.createElement("li");
 
+        let div = document.createElement("div");
+        div.setAttribute("id" , "div_favs");
+        let li = document.createElement("li");
         li.setAttribute("id" , "fav_list");
 
         let btn = document.createElement("button");
-
         btn.setAttribute("id" , "btn_fav");
+        
+        let btn_supp = document.createElement("button");
+        btn_supp.setAttribute("id" , "btn_supp");
         btn.setAttribute("class", "button_fav");
+        
+
 
         let span = document.createElement("span");
         span.setAttribute("id", "span_fav");
@@ -60,14 +86,26 @@ function displayFavsonLoad(){
                 span.textContent = "Pas des films favorites.";
                 li.appendChild(span);
             } else {
+                
+                btn_supp.textContent = " X ";
                 btn.textContent = fav.toUpperCase();
-
+                //btn.appendChild(btn_supp);
                 btn.addEventListener("click", () =>{
                     fetchData(fav);
                 });
                 li.appendChild(btn);
+                div.appendChild(li);
+                div.appendChild(btn_supp);
+
+                
+                
             }
         }
-        fav_list.appendChild(li);
+        fav_list.appendChild(div);
+        
+        btn_supp.addEventListener("click", () => {
+            fav_list.removeChild(div);
+            removeFromFavs(key);             
+                })
     }
 }
