@@ -110,9 +110,15 @@ h1 {
   border-bottom-left-radius: 40px;
 }
 
+#searchBar:focus {
+  outline: 0 !important;
+}
+
 #btn-lancer-recherche {
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
+
+  margin-right: 10px;
 }
 
 #searchBar {
@@ -123,13 +129,17 @@ h1 {
 }
 
 #bloc-recherche > button {
-  padding: 0.8em 0.8em;
+  padding: 0em 1em;
   /* Bordure invisible pour que le hover ne bouge pas le bouton */
   border: 1px solid var(--main-yellow);
 
   /* Par défaut, les boutons sont en gris
 	 (S'ils sont "clicables", ils passent en jaune) */
   background-color: var(--background-button);
+}
+
+#btn-favoris {
+  border-radius: 360px;
 }
 
 /* Apparences des boutons clicables */
@@ -185,12 +195,6 @@ h1 {
   text-align: center;
 }
 
-#bloc-resultats p.res::before {
-  /* Affichage d'une flèche devant chaque résultat
-		(Cf. https://unicode-table.com/fr/21E8/ ) */
-  content: "\21E8\00A0";
-}
-
 #bloc-resultats {
   display: flex;
   flex-wrap: wrap;
@@ -223,7 +227,7 @@ h1 {
 }
 
 .links {
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 
 #bloc-resultats .links:hover {
@@ -288,15 +292,21 @@ figure {
 
 #liste-favoris li {
   margin-bottom: 8px;
+}
+
+.button_fav {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--main-yellow);
+
+  font-weight: bold;
+  background-color: var(--main-yellow);
+}
+
+.button_fav:hover {
   cursor: pointer;
-}
 
-#liste-favoris li span {
-  text-decoration: underline;
-}
-
-#liste-favoris li span:hover {
-  color: var(--main-yellow);
+  background-color: var(--active-yellow);
 }
 
 /* Media-query pour gérer l'affichage sur petit écran */
@@ -314,8 +324,8 @@ figure {
     flex: 0;
   }
 
-  #liste-favoris #fav_list #btn_fav{
+  /* #liste-favoris #fav_list #btn_fav{
     background-color: transparent;
     border: var(--noir_transparent);
-  }
+  } */
 }

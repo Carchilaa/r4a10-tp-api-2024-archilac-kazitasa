@@ -1,6 +1,7 @@
 let divResult = document.getElementById("bloc-resultats");
 let resVide = document.getElementById("info-vide");
 let resP;
+let movies; // stocke le résultat de la requête API
 
 // Function pour recuperer les infos de l'API
 function fetchData(recherche) {
@@ -23,7 +24,7 @@ function fetchData(recherche) {
       gifChargement.style.display = "none";
 
       // récupération du résultat de la recherche (liste de 8 films MAX)
-      let movies = data.description;
+      movies = data.description;
       console.log(movies);
 
       if (movies.length == 0) {
@@ -45,6 +46,7 @@ function fetchData(recherche) {
           divResult.removeChild(child);
         });
         
+        let idPoster = 1;
         // Affichage des résultats
         movies.forEach((movie) => {
           // création d'un élément HTML <figure> pour contenir les liens
@@ -58,6 +60,7 @@ function fetchData(recherche) {
           // création d'un élément HTML pour ajouter un lien
           let link = document.createElement("a");
           link.setAttribute("class", "links res");
+          link.setAttribute("id", "poster-"+idPoster);
           // lien vers la page IMDB du film
           link.href = movie["#IMDB_URL"]
           link.target = "_blank" // ouverture dans un nouvel onglet
@@ -132,6 +135,7 @@ function fetchData(recherche) {
             </figure>
           </a>
            */
+          idPoster++;
         });
       }
     })

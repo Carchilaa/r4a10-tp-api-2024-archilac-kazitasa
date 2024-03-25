@@ -60,6 +60,9 @@ searchBar.addEventListener("keydown", (event) => {
   }
 })
 
+/////////////////////
+// FAVORIS
+/////////////////////
 fav_search.forEach(button => {
   button.addEventListener("click", () =>{
     let span_fav = document.getElementById("span_fav");
@@ -67,9 +70,11 @@ fav_search.forEach(button => {
 
     console.log(recherche);
     fetchData(recherche);
-})
-
-})
+  });
+});
+window.onload = function() {
+  displayFavsonLoad();
+};
 
 
 /////////////////////
@@ -82,7 +87,3 @@ lienGit.addEventListener("mouseover", () => {
 lienGit.addEventListener("mouseout", () => {
   lienGit.removeAttribute("class");
 });
-
-window.onload = function() {
-  displayFavsonLoad();
-};
