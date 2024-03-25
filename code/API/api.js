@@ -47,9 +47,13 @@ function fetchData(recherche) {
         
         // Affichage des résultats
         movies.forEach((movie) => {
-          
           // création d'un élément HTML <figure> pour contenir les liens
           let figure = document.createElement("figure");
+
+          // création d'un élément HTML <span> pour faire office de badge
+          let span = document.createElement("span");
+          span.setAttribute("class", "badge");
+          span.textContent = movie["#TITLE"];
 
           // création d'un élément HTML pour ajouter un lien
           let link = document.createElement("a");
@@ -66,6 +70,18 @@ function fetchData(recherche) {
           // création d'un élément HTML pour le poster du film
           let result = document.createElement("img");
           result.setAttribute("class", "poster");
+
+          // création d'un élément HTML <button> pour l'ajout de favoris
+          let btnFavoris = document.createElement("button");
+          btnFavoris.setAttribute("class", "btn_clicable");
+          btnFavoris.setAttribute("id", "btn-favoris");
+          btnFavoris.type = "button";
+          btnFavoris.title = "Ajouter la recherche aux favoris";
+          // création d'un élément HTML <img> (une petite étoile)
+          let etoile = document.createElement("img");
+          etoile.src = "assets/img/etoile-vide.svg";
+          etoile.alt = "Etoile vide";
+          etoile.width = "15";
           
 
           // Vérifier qu'on dispose d'un poster
@@ -76,11 +92,46 @@ function fetchData(recherche) {
           }
 
 
+          btnFavoris.appendChild(etoile);
+          span.appendChild(btnFavoris);
+
           figure.appendChild(icon_link);
           figure.appendChild(result);
+          figure.appendChild(span);
+
           link.appendChild(figure);
+
           // Ajout des élémens créés dans le HTML (<div id="bloc-resultats">)
           divResult.appendChild(link);
+
+          /**
+           * Le code HTML généré sera sous cette forme :
+           * <a class="links res" href="https://imdb.com/title/tt0409591" target="_blank">
+            <figure>
+              <img class="icon_lien" src="./assets/img/link-external-regular-24.png">
+              <img class="poster" src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg">
+              <span class="badge">
+                Naruto
+                <button
+                  id="btn-favoris"
+                  type="button"
+                  title="Ajouter la recherche aux favoris"
+                  class="btn_clicable"
+                >
+                  <!-- Icone étoile vide
+                    (qui indique que la recherche ne fait pas partie des favoris) -->
+                  <img src="assets/img//etoile-vide.svg" alt="Etoile vide" width="22" />
+
+                  <!-- Icone étoile pleine
+                      (qui indique que la recherche fait partie des favoris) -->
+                  <!-- <img src="images/etoile-pleine.svg" alt="Etoile pleine" width="22" > -->
+
+                  <!-- (Les 2 icones d'étoile provenant de flaticon.com) -->
+                </button>
+              </span>
+            </figure>
+          </a>
+           */
         });
       }
     })

@@ -34,6 +34,14 @@ p.info-vide {
   font-style: italic;
 }
 
+/* Partie En-tête */
+h1 {
+  text-align: center;
+  font-variant: small-caps;
+  font-size: 2.5em;
+  padding: 0 10vb 0 10vb; /*padding gauche et droit*/
+}
+
 @keyframes textShine {
   0% {
       background-position: 0% 50%;
@@ -44,14 +52,6 @@ p.info-vide {
       transform: scale(1.01);
   }
 }
-/* Partie En-tête */
-h1 {
-  text-align: center;
-  font-variant: small-caps;
-  font-size: 2.5em;
-  padding: 0 10vb 0 10vb; /*padding gauche et droit*/
-}
-
 .animated-text {
   background: var(--main-yellow);
   background: linear-gradient(
@@ -105,11 +105,21 @@ h1 {
   font-size: 1.2em;
 }
 
-#bloc-recherche > input[type="text"] {
+#searchBar {
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+#btn-lancer-recherche {
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+#searchBar {
   color: var(--almost-black);
   flex: 1;
   padding: 0.7em;
-  border: 0.3em solid var(--main-yellow);
+  border: 0.22em solid var(--main-yellow);
 }
 
 #bloc-recherche > button {
@@ -118,7 +128,7 @@ h1 {
   border: 1px solid var(--main-yellow);
 
   /* Par défaut, les boutons sont en gris
-	 (S'ils sont "clicables", ils passent en vert) */
+	 (S'ils sont "clicables", ils passent en jaune) */
   background-color: var(--background-button);
 }
 
@@ -139,6 +149,32 @@ h1 {
 }
 
 #bloc-recherche > button.btn_clicable:active {
+  background-color: var(--active-yellow);
+}
+
+/* Apparences des boutons clicables */
+.badge > button {
+  padding: 0.8em 0.8em;
+  /* Bordure invisible pour que le hover ne bouge pas le bouton */
+  border: 1px solid var(--main-yellow);
+}
+
+.badge > button.btn_clicable {
+  background-color: var(--main-yellow);
+}
+
+.badge > button:focus {
+  /* Pour éviter un affichage disgracieux
+		quand le bouton reste en focus */
+  outline: 0 !important;
+}
+
+.badge > button.btn_clicable:hover {
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.badge > button.btn_clicable:active {
   background-color: var(--active-yellow);
 }
 
@@ -193,13 +229,36 @@ h1 {
 #bloc-resultats .links:hover {
   cursor: pointer;
 
-  filter: brightness(70%);
+  /* filter: brightness(70%); */
   transform: scale(1.03);
 }
 
 figure {
   margin: 0;
   position: relative;
+}
+
+.badge {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+
+  color: white;
+  background-color: var(--noir_transparent);
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+
+  padding: 0.7em;
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+#bloc-resultats figure:hover > .badge {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #bloc-resultats figure:hover > .icon_lien {

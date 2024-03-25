@@ -41,7 +41,9 @@ btnFav.addEventListener("click", ()=>{
   }
 });
 
-
+///////////////////////////
+// BARRE DE RECHERCHE
+///////////////////////////
 searchBar.addEventListener("keydown", (event) => {
   if (event.key == "Enter") {
     let recherche = searchBar.value;
@@ -58,8 +60,7 @@ searchBar.addEventListener("keydown", (event) => {
     let focus = document.querySelector( ':focus' );
     if( focus ) focus.blur();
   }
-})
-
+});
 
 /////////////////////
 // LIEN GIT
