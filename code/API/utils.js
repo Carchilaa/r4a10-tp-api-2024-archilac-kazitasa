@@ -18,7 +18,7 @@ function addFilmToFav(button) {
 
     displayFilmFav(film);
 
-    localStorage.setItem("favs-film" + localStorage.length, JSON.stringify(film));
+    localStorage.setItem("fav-film" + localStorage.length, JSON.stringify(film));
 }
 
 function removeFromFavs(key){;
@@ -47,7 +47,7 @@ function verify_dobles(movie){
 function displayFavs(){
     let liRechFav = document.createElement("li");
 
-    li.setAttribute("id" , "fav_list");
+    liRechFav.setAttribute("id" , "fav_list");
 
     let div = document.createElement("div");
     div.setAttribute("id" , "div_favs");
@@ -55,8 +55,8 @@ function displayFavs(){
 
     let btnRechFav = document.createElement("button");
 
-    btn.setAttribute("id" , "btn_fav");
-    btn.setAttribute("class", "button_fav");
+    btnRechFav.setAttribute("id" , "btn_fav");
+    btnRechFav.setAttribute("class", "button_fav");
     //btn.textContent = fav.toUpperCase();
 
     let btn_supp = document.createElement("button");
@@ -84,8 +84,8 @@ function displayFavs(){
         fetchData(fav);
     });
         
-    li.appendChild(btn);
-    div.appendChild(li);
+    liRechFav.appendChild(btnRechFav);
+    div.appendChild(liRechFav);
     div.appendChild(btn_supp);
             
     fav_list.appendChild(div);
