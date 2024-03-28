@@ -162,6 +162,13 @@ h1 {
   background-color: var(--active-yellow);
 }
 
+.poster-container {
+  position: relative;
+  display: inline-block; /* Permet de garder la taille du conteneur relative à son contenu */
+
+  transition: all 0.5s;
+}
+
 /* Apparences des boutons clicables */
 .badge > button {
   padding: 0.8em 0.8em;
@@ -230,7 +237,7 @@ h1 {
   transition: all 0.5s;
 }
 
-#bloc-resultats .links:hover {
+.poster-container:hover {
   cursor: pointer;
 
   /* filter: brightness(70%); */
@@ -259,7 +266,7 @@ figure {
   box-sizing: border-box;
 }
 
-#bloc-resultats figure:hover > .badge {
+#bloc-resultats .poster-container:hover > .badge {
   display: flex;
   justify-content: space-around;
   align-items: center;

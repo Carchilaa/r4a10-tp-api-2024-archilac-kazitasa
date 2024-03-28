@@ -94,6 +94,10 @@ function fetchData(recherche) {
 }
 
 function createPoster(movie) {
+  // création d'un élément HTML <div>
+  let posterContainer = document.createElement("div");
+  posterContainer.setAttribute("class", "poster-container res");
+
   // création d'un élément HTML <figure> pour contenir les liens
   let figure = document.createElement("figure");
 
@@ -104,7 +108,7 @@ function createPoster(movie) {
 
   // création d'un élément HTML pour ajouter un lien
   let link = document.createElement("a");
-  link.setAttribute("class", "links res");
+  link.setAttribute("class", "links");
   // lien vers la page IMDB du film
   link.href = movie["#IMDB_URL"]
   link.target = "_blank" // ouverture dans un nouvel onglet
@@ -129,8 +133,9 @@ function createPoster(movie) {
   // Ajout de l'écouteur d'événement sur le bouton "Ajouter aux favoris"
   btnFavoris.addEventListener("click", (event) => {
     event.stopPropagation(); // Arrêter la propagation de l'événement
-    addFilmToFav(event.target); // Appel de la fonction pour ajouter le film aux favoris
-});
+    // On utilise currentTarget pour eviter que le clique soit détecté sur l'image "étoile"
+    addFilmToFav(event.currentTarget); // Appel de la fonction pour ajouter le film aux favoris
+  });
 
   // création d'un élément HTML <img> (une petite étoile)
   let etoile = document.createElement("img");
@@ -150,9 +155,11 @@ function createPoster(movie) {
 
   figure.appendChild(icon_link);
   figure.appendChild(result);
-  figure.appendChild(span);
 
   link.appendChild(figure);
+  
+  posterContainer.appendChild(link);
+  posterContainer.appendChild(span);
 
-  return link;
+  return posterContainer;
 }
