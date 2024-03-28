@@ -23,7 +23,7 @@ function addFilmToFav(button) {
         displayFilmFav(film);
 
         // Ajouter le film aux favoris dans le stockage local
-        localStorage.setItem("favFilm" + localStorage.length, film);
+        localStorage.setItem("favFilm" + localStorage.length, JSON.stringify(film));
     } else {
         alert("Erreur : les données du film ne sont pas définies.");
     }
@@ -147,7 +147,7 @@ function displayFavsonLoad(){
         if(key.startsWith("favs")){
             let  fav  = localStorage.getItem(key);
             if (localStorage.length == 0){
-                span.textContent = "Pas des films favorites.";
+                span.textContent = "Pas des films favoris";
                 li.appendChild(span);
             } else {
                 
@@ -160,9 +160,6 @@ function displayFavsonLoad(){
                 li.appendChild(btn);
                 div.appendChild(li);
                 div.appendChild(btn_supp);
-
-                
-                
             }
         }
         fav_list.appendChild(div);

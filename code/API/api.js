@@ -29,10 +29,7 @@ function fetchData(recherche) {
 
       if (movies.length == 0) {
         // Supprimer les anciens résulats
-        resP = Array.from(document.getElementsByClassName("res"));
-        resP.forEach(child => {
-          divResult.removeChild(child);
-        });
+        divResult.innerHTML = "";
 
         // Afficher résultat vide
         resVide.removeAttribute("class");
@@ -41,10 +38,7 @@ function fetchData(recherche) {
         resVide.setAttribute("class", "hide");
 
         // Supprimer les anciens résulats
-        resP = Array.from(document.getElementsByClassName("res"));
-        resP.forEach(child => {
-          divResult.removeChild(child);
-        });
+        divResult.innerHTML = "";
         
         let idPoster = 1;
         // Affichage des résultats
