@@ -44,16 +44,6 @@ btnFav.addEventListener("click", ()=>{
   }
 });
 
-/////////////////////
-// BOUTON POSTER FAVORIS
-/////////////////////
-btnsPosterFav.forEach(button => {
-  button.addEventListener("click", () =>{
-    console.log("clique sur btn fav");
-    addFilmToFav(button);
-  });
-});
-
 ///////////////////////////
 // BARRE DE RECHERCHE
 ///////////////////////////

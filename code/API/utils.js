@@ -13,12 +13,20 @@ function addToFav(recherche){
 function addFilmToFav(button) {
     // Accéder à l'élément parent contenant les informations du film
     let film = button.value;
-    // transforme les infos qui sont sous forme de string en objet javaScript
-    film = JSON.parse(film);
 
-    displayFilmFav(film);
+    // Vérifier si les données du film sont définies
+    if (film) {
+        // Convertir les données en objet JavaScript
+        film = JSON.parse(film);
 
-    localStorage.setItem("fav-film" + localStorage.length, JSON.stringify(film));
+        // Appeler la fonction pour afficher le film favori
+        displayFilmFav(film);
+
+        // Ajouter le film aux favoris dans le stockage local
+        localStorage.setItem("favFilm" + localStorage.length, film);
+    } else {
+        alert("Erreur : les données du film ne sont pas définies.");
+    }
 }
 
 function removeFromFavs(key){;
@@ -51,7 +59,6 @@ function displayFavs(){
 
     let div = document.createElement("div");
     div.setAttribute("id" , "div_favs");
-    liRechFav.setAttribute("id" , "fav_list");
 
     let btnRechFav = document.createElement("button");
 
@@ -61,7 +68,7 @@ function displayFavs(){
 
     let btn_supp = document.createElement("button");
     btn_supp.setAttribute("id" , "btn_supp");
-    btn.setAttribute("class", "button_fav");
+    btnRechFav.setAttribute("class", "button_fav");
 
     let span = document.createElement("span");
     span.setAttribute("id", "span_fav");
@@ -71,16 +78,16 @@ function displayFavs(){
     if(localStorage.length > 0){
         key = "favs" + (localStorage.length - 1);
         fav  = localStorage.getItem(key);
-        btn.textContent = fav.toUpperCase();
+        btnRechFav.textContent = fav.toUpperCase();
         btn_supp.textContent = " X ";
     }else{
         key = "favs" + localStorage.length;
         fav  = localStorage.getItem(key);
-        btn.textContent = fav.toUpperCase();
+        btnRechFav.textContent = fav.toUpperCase();
         btn_supp.textContent = " X ";
     }
 
-    btn.addEventListener("click", () =>{
+    btnRechFav.addEventListener("click", () =>{
         fetchData(fav);
     });
         
@@ -97,10 +104,6 @@ function displayFavs(){
     btnRechFav.setAttribute("id" , "btnRech_fav");
     btnRechFav.setAttribute("class", "button_fav");
     btnRechFav.textContent = fav.toUpperCase();
-        
-    liRechFav.appendChild(btnRechFav);
-            
-    fav_list.appendChild(liRechFav);
 }
 
 /////////////////////////////
